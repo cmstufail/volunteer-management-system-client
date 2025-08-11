@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaRegCalendarAlt } from "react-icons/fa";
-import axios from 'axios';
+// import axios from 'axios';
 
 import Container from '../shared/Container';
 import { useTheme } from '../../context/ThemeProvider';
-// import useTitle from '../shared/hooks/UseTitle';
+import useAxiosSecure from '../shared/hooks/useAxiosSecure';
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -32,11 +32,9 @@ const cardVariants = {
 
 const VolunteerNeedsNow = () => {
 
-    // useTitle( 'Needs Volunteer' );
-
-
     const { theme } = useTheme();
     const isDark = theme === 'dark';
+    const axiosSecure = useAxiosSecure();
 
     const [ posts, setPosts ] = useState( [] );
     const [ loading, setLoading ] = useState( true );
@@ -44,7 +42,7 @@ const VolunteerNeedsNow = () => {
     useEffect( () => {
         const fetchFeaturedPosts = async () => {
             try {
-                const response = await axios.get( `${ import.meta.env.VITE_API_URL }/featured-posts` );
+                const response = await axiosSecure.get( `/featured-posts` );
                 setPosts( response.data );
             } catch ( error ) {
                 console.error( "Failed to fetch featured posts:", error );
@@ -53,7 +51,7 @@ const VolunteerNeedsNow = () => {
             }
         };
         fetchFeaturedPosts();
-    }, [] );
+    }, [ axiosSecure ] );
 
     if ( loading ) {
         return <div className="text-center py-20"><span className="loading loading-lg"></span></div>;
@@ -68,7 +66,7 @@ const VolunteerNeedsNow = () => {
                 </div>
 
                 <motion.div
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
                     variants={ containerVariants }
                     initial="hidden"
                     whileInView="visible"
@@ -109,4 +107,3 @@ const VolunteerNeedsNow = () => {
 };
 
 export default VolunteerNeedsNow;
-
