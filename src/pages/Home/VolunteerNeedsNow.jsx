@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaRegCalendarAlt } from "react-icons/fa";
-// import axios from 'axios';
 
 import Container from '../shared/Container';
 import { useTheme } from '../../context/ThemeProvider';
@@ -42,8 +41,7 @@ const VolunteerNeedsNow = () => {
     useEffect( () => {
         const fetchFeaturedPosts = async () => {
             try {
-
-                const response = await axiosSecure.get( `/featured-posts` );
+                const response = await axiosSecure.get( `/featured-posts` ); 
                 setPosts( response.data );
             } catch ( error ) {
                 console.error( "Failed to fetch featured posts:", error );

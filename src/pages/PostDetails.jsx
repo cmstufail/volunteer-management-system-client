@@ -10,7 +10,6 @@ import Container from '../pages/shared/Container'
 import { useTheme } from '../context/ThemeProvider';
 import LoadingSpinner from './shared/LoadingSpinner';
 
-
 const PostDetails = () => {
 
     useTitle( 'Details Post' );
@@ -20,22 +19,27 @@ const PostDetails = () => {
     const isDark = theme === 'dark';
 
     const { id } = useParams();
+    console.log( "Params ID:", id );
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
 
     const [ post, setPost ] = useState( null );
     const [ loading, setLoading ] = useState( true );
+    const [ error, setError ] = useState( null );
 
     useTitle( post ? post.postTitle : 'Post Details' );
 
     useEffect( () => {
         setLoading( true );
+        setError( null );
         axiosSecure.get( `/post/${ id }` )
             .then( response => {
                 setPost( response.data );
             } )
-            .catch( error => {
-                console.error( "Error fetching post details:", error );
+            .catch( err => {
+                console.error( "Error fetching post details:", err );
+                setError( 'Failed to fetch post details.' );
+                setPost( null );
             } )
             .finally( () => {
                 setLoading( false );
@@ -45,6 +49,8 @@ const PostDetails = () => {
     if ( loading ) {
         return <LoadingSpinner />;
     }
+
+    if ( error ) return <div className="text-center py-20"><p className="text-red-600">{ error }</p></div>;
 
     if ( !post ) {
         return (
