@@ -1,0 +1,149 @@
+
+/* Container */
+.slide-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    color: white;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+
+/* Background image */
+.slide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    transform: scale(1.05);
+    transition: transform 6s ease-out;
+}
+
+/* active slider image */
+.swiper-slide-active .slide-image {
+    transform: scale(1);
+}
+
+/* overlay */
+.slide-overlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+/* text, button Container */
+.slide-content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+/* keyfram */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* heading */
+.slide-heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    animation: fadeInDown 1s ease-out 0.5s;
+    animation-fill-mode: backwards;
+}
+
+/* paragraph */
+.slide-paragraph {
+    max-width: 600px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 1s ease-out 0.8s;
+    animation-fill-mode: backwards;
+}
+
+/* button */
+.slide-button {
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    animation: fadeInUp 1s ease-out 1.1s;
+    animation-fill-mode: backwards;
+}
+
+.slide-button:hover {
+    transform: translateY(-3px);
+}
+
+/* navigation arrow color change */
+.swiper-button-next,
+.swiper-button-prev {
+    color: #ffffff;
+}
+
+/* hover*/
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    color: #cccccc;
+    transition: color 0.3s ease;
+}
+
+/* dot sign color change */
+.swiper-pagination-bullet {
+    background-color: rgba(255, 255, 255, 0.7);
+    opacity: 1;
+}
+
+/* active dot color change */
+.swiper-pagination-bullet-active {
+    background-color: #ffffff;
+}
+
+/* media query small device */
+@media (max-width: 768px) {
+    .slide-heading {
+        font-size: 1.8rem;
+    }
+    .slide-paragraph {
+        font-size: 0.9rem;
+    }
+}

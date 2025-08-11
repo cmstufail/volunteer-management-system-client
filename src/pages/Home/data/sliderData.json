@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "image": "https://i.ibb.co/r2Vk9yWq/banner-1.png",
+    "heading": "Join Our Community to Help Others",
+    "paragraph": "Be a part of something bigger. Your time and skills can bring hope and change to communities in need. Every small act of kindness creates a ripple effect.",
+    "buttonText": "Become a Volunteer",
+    "buttonColor": "bg-blue-600 hover:bg-blue-700",
+    "buttonLink": "/all-posts"
+  },
+  {
+    "id": 2,
+    "image": "https://i.ibb.co/cnfccgc/banner-2.png",
+    "heading": "Need Volunteers for Your Cause?",
+    "paragraph": "Post your requirements and connect with passionate individuals ready to support your mission. Let's build a better world together.",
+    "buttonText": "Post a Job",
+    "buttonColor": "bg-green-600 hover:bg-green-700", 
+    "buttonLink": "/add-post"
+  },
+  {
+    "id": 3,
+    "image": "https://i.ibb.co/DDHLZD9c/banner-3.png",
+    "heading": "Explore Opportunities to Make a Difference",
+    "paragraph": "From environmental clean-ups to educational programs, find a cause that speaks to you. Your contribution matters more than you think.",
+    "buttonText": "See All Posts",
+    "buttonColor": "bg-yellow-500 hover:bg-yellow-600 text-black",
+    "buttonLink": "/all-posts"
+  }
+]
