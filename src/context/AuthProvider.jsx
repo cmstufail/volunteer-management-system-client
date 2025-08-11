@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import {
     createUserWithEmailAndPassword,
@@ -9,12 +9,18 @@ import {
     sendPasswordResetEmail,
     setPersistence,
     browserSessionPersistence,
-    browserLocalPersistence
+    browserLocalPersistence,
+    GoogleAuthProvider,
+    GithubAuthProvider,
+    signInWithPopup
 } from 'firebase/auth';
 import { auth } from '../firebase/firebase.init';
 
 
 const AuthContext = createContext( null );
+
+const googleProvider = new GoogleAuthProvider();
+const githubProvider = new GithubAuthProvider();
 
 const AuthProvider = ( { children } ) => {
     const [ user, setUser ] = useState( null );
@@ -54,6 +60,16 @@ const AuthProvider = ( { children } ) => {
 
                 return result;
             } );
+    };
+
+    const loginWithGoogle = () => {
+        setLoading( true );
+        return signInWithPopup( auth, googleProvider );
+    };
+
+    const loginWithGithub = () => {
+        setLoading( true );
+        return signInWithPopup( auth, githubProvider );
     };
 
     const resetPassword = ( email ) => {
@@ -111,6 +127,8 @@ const AuthProvider = ( { children } ) => {
         setLoading,
         createUser,
         login,
+        loginWithGoogle,
+        loginWithGithub,
         logout,
         resetPassword,
         updateUserProfile
