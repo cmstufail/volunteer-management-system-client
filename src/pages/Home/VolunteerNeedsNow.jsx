@@ -41,8 +41,9 @@ const VolunteerNeedsNow = () => {
 
     useEffect( () => {
         const fetchFeaturedPosts = async () => {
-            try {               
-                const response = await axiosSecure.get( `/featured-posts` ); 
+            try {
+
+                const response = await axiosSecure.get( `/featured-posts` );
                 setPosts( response.data );
             } catch ( error ) {
                 console.error( "Failed to fetch featured posts:", error );

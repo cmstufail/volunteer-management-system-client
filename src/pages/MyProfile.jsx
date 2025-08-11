@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 
 import { useAuth } from '../context/AuthProvider';
 import useTitle from './shared/hooks/UseTitle';
+import LoadingSpinner from './shared/LoadingSpinner';
 
 const MyProfile = () => {
 
@@ -15,6 +16,7 @@ const MyProfile = () => {
         photoURL: ''
     } );
     const [ isEditing, setIsEditing ] = useState( false );
+    const [ isSubmitting, setIsSubmitting ] = useState( false );
 
     useEffect( () => {
         if ( user ) {
@@ -32,6 +34,7 @@ const MyProfile = () => {
 
     const handleUpdate = async ( e ) => {
         e.preventDefault();
+        setIsSubmitting( true );
         try {
             await updateUserProfile( formData.displayName, formData.photoURL );
             Swal.fire( {
@@ -49,11 +52,13 @@ const MyProfile = () => {
                 title: 'Update Failed',
                 text: error.message || 'Something went wrong!',
             } );
+        } finally {
+            setIsSubmitting( false );
         }
     };
 
     if ( authLoading ) {
-        return <div className="flex justify-center items-center min-h-screen"><span className="loading loading-spinner loading-lg"></span></div>
+        return <LoadingSpinner />;
     }
 
     return (
@@ -81,7 +86,7 @@ const MyProfile = () => {
                             name="displayName"
                             value={ formData.displayName }
                             onChange={ handleChange }
-                            disabled={ !isEditing }
+                            disabled={ !isEditing || isSubmitting }
                             className="input input-bordered w-full"
                         />
                     </div>
@@ -93,13 +98,15 @@ const MyProfile = () => {
                             name="photoURL"
                             value={ formData.photoURL }
                             onChange={ handleChange }
-                            disabled={ !isEditing }
+                            disabled={ !isEditing || isSubmitting }
                             className="input input-bordered w-full"
                         />
                     </div>
 
                     { isEditing ? (
-                        <button type="submit" className="btn btn-primary w-full">Save Changes</button>
+                        <button type="submit" className="btn btn-primary w-full" disabled={ isSubmitting }>
+                            { isSubmitting ? 'Saving...' : 'Save Changes' }
+                        </button>
                     ) : (
                         <div
                             role="button"

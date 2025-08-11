@@ -7,10 +7,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import useAxiosSecure from '../pages/shared/hooks/useAxiosSecure';
 import useTitle from '../pages/shared/hooks/UseTitle';
 import { useAuth } from '../context/AuthProvider';
+import LoadingSpinner from './shared/LoadingSpinner';
 
 
 const UpdatePost = () => {
-  
+
   const { id } = useParams();
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
@@ -18,6 +19,7 @@ const UpdatePost = () => {
 
   const [ post, setPost ] = useState( null );
   const [ loading, setLoading ] = useState( true );
+  const [ isSubmitting, setIsSubmitting ] = useState( false );
   const [ deadline, setDeadline ] = useState( new Date() );
 
   useTitle( post ? `Update: ${ post.postTitle }` : 'Update Post' );
@@ -38,6 +40,7 @@ const UpdatePost = () => {
 
   const handleUpdatePost = async ( e ) => {
     e.preventDefault();
+    setIsSubmitting( true );
     const form = e.target;
 
     const updatedPost = {
@@ -61,11 +64,13 @@ const UpdatePost = () => {
     } catch ( error ) {
       console.error( "Update failed:", error );
       Swal.fire( 'Error!', 'Failed to update the post.', 'error' );
+    } finally {
+      setIsSubmitting( false );
     }
   };
 
   if ( loading || authLoading ) {
-    return <div className="text-center py-20"><span className="loading loading-spinner loading-lg"></span></div>;
+    return <LoadingSpinner />;
   }
 
   if ( !post ) {
@@ -122,7 +127,9 @@ const UpdatePost = () => {
             />
           </div>
           <div className="form-control mt-8">
-            <button type="submit" className="btn btn-primary btn-lg w-full">Update Post</button>
+            <button type="submit" className="btn btn-primary btn-lg w-full" disabled={ isSubmitting }>
+              { isSubmitting ? 'Updating...' : 'Update Post' }
+            </button>
           </div>
         </form>
       </div>

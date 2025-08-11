@@ -7,7 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import useTitle from '../pages/shared/hooks/UseTitle';
 import useAxiosSecure from '../pages/shared/hooks/useAxiosSecure';
-
+import LoadingSpinner from './shared/LoadingSpinner';
 
 const AddPost = () => {
 
@@ -18,9 +18,11 @@ const AddPost = () => {
   const axiosSecure = useAxiosSecure();
 
   const [ deadline, setDeadline ] = useState( new Date() );
+  const [ isLoading, setIsLoading ] = useState( false );
 
   const handleSubmit = async ( e ) => {
     e.preventDefault();
+    setIsLoading( true );
     const form = e.target;
 
     const newPost = {
@@ -57,8 +59,14 @@ const AddPost = () => {
         title: 'Submission Failed',
         text: error.response?.data?.message || 'Something went wrong!',
       } );
+    } finally {
+      setIsLoading( false );
     }
   };
+
+  if ( isLoading ) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <div className="bg-base-200 dark:bg-gray-800 py-10 px-4">
@@ -128,7 +136,9 @@ const AddPost = () => {
           </div>
 
           <div className="form-control mt-8">
-            <button type="submit" className="btn btn-primary btn-lg w-full">Add Post</button>
+            <button type="submit" className="btn btn-primary btn-lg w-full" disabled={ isLoading }>
+              { isLoading ? 'Adding Post...' : 'Add Post' }
+            </button>
           </div>
         </form>
       </div>

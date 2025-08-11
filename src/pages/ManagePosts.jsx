@@ -7,11 +7,11 @@ import { useAuth } from '../context/AuthProvider';
 import useAxiosSecure from '../pages/shared/hooks/useAxiosSecure';
 import Table from './shared/Table';
 import useTitle from './shared/hooks/UseTitle';
+import LoadingSpinner from './shared/LoadingSpinner';
 
 const ManagePosts = () => {
 
   useTitle( 'Manage Posts' );
-
 
   const { user, loading: authLoading } = useAuth();
   const axiosSecure = useAxiosSecure();
@@ -126,7 +126,7 @@ const ManagePosts = () => {
   };
 
   if ( loading || authLoading ) {
-    return <div className="text-center py-20"><span className="loading loading-spinner loading-lg"></span></div>;
+    return <LoadingSpinner />;
   }
 
   return (

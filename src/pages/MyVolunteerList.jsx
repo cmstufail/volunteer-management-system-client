@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthProvider';
 import useAxiosSecure from '..//pages/shared/hooks/useAxiosSecure';
 import useTitle from '../pages/shared/hooks/UseTitle';
-
+import LoadingSpinner from './shared/LoadingSpinner';
 
 const MyVolunteerList = () => {
 
@@ -69,11 +69,7 @@ const MyVolunteerList = () => {
   };
 
   if ( loading || authLoading ) {
-    return (
-      <div className="flex justify-center items-center min-h-[calc(100vh-200px)]">
-        <span className="loading loading-spinner loading-lg"></span>
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   return (
@@ -131,4 +127,3 @@ const MyVolunteerList = () => {
 };
 
 export default MyVolunteerList;
-

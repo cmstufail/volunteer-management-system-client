@@ -8,6 +8,7 @@ import useTitle from '../pages/shared/hooks/UseTitle';
 import ExpandableText from '../pages/shared/ExpandableText';
 import Container from '../pages/shared/Container'
 import { useTheme } from '../context/ThemeProvider';
+import LoadingSpinner from './shared/LoadingSpinner';
 
 
 const PostDetails = () => {
@@ -42,11 +43,7 @@ const PostDetails = () => {
     }, [ id, axiosSecure ] );
 
     if ( loading ) {
-        return (
-            <div className="flex justify-center items-center min-h-[calc(100vh-200px)]">
-                <span className="loading loading-spinner loading-lg"></span>
-            </div>
-        );
+        return <LoadingSpinner />;
     }
 
     if ( !post ) {
@@ -134,11 +131,3 @@ const PostDetails = () => {
 };
 
 export default PostDetails;
-
-
-
-
-
-
-
-
