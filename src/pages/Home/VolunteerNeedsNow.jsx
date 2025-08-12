@@ -93,8 +93,8 @@ const VolunteerNeedsNow = () => {
                             </div>
                             <h2 className="card-title mt-2 text-xl font-bold min-h-[3.5rem]">{ post.postTitle }</h2>
                             <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400 mt-2">
-                                <FaRegCalendarAlt />
-                                <p>Deadline: { new Date( post.deadline ).toLocaleDateString() }</p>
+                                <FaRegCalendarAlt className={ `${ isDark ? 'text-white' : 'text-gray-800' }` } />
+                                <p className={ `${ isDark ? 'text-white' : 'text-gray-800' } text-sm` }>Deadline: { new Date( post.deadline ).toLocaleDateString() }</p>
                             </div>
                             <div className="card-actions justify-end mt-auto pt-4">
                                 <Link to={ `/post/${ post._id }` } className="btn btn-primary">View Details</Link>

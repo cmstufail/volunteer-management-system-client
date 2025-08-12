@@ -7,8 +7,11 @@ import logoBlack from '../../assets/images/logo_black.png';
 import Container from './Container';
 import { useTheme } from '../../context/ThemeProvider';
 
+
 const Footer = () => {
     const { theme } = useTheme();
+        const isDark = theme === 'dark';
+
 
     const getFooterLinkClass = ( { isActive } ) => {
         return isActive
@@ -71,7 +74,7 @@ const Footer = () => {
                         </div>
                     </div>
                     <div className={ `mt-8 pt-6 text-center text-gray-500 border-t ${ theme === 'dark' ? 'border-gray-700' : 'border-gray-200' }` }>
-                        <p>&copy; { new Date().getFullYear() } VolunteerHub. All rights reserved.</p>
+                        <p className={ `${ isDark ? 'text-white' : 'text-gray-800' } text-sm` }>&copy; { new Date().getFullYear() } VolunteerHub. All rights reserved.</p>
                     </div>
                 </div>
             </Container>

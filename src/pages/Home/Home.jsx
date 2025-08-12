@@ -6,6 +6,10 @@ import HowItWorks from './HowItWorks';
 import Testimonials from './Testimonials';
 import VolunteerNeedsNow from './VolunteerNeedsNow';
 import LoadingSpinner from '../shared/LoadingSpinner';
+// import AboutUs from '../AboutUs';
+// import ContactUs from '../ContactUs';
+import AboutUsPreview from './AboutUsPreview';
+import ContactUsPreview from './ContactUsPreview';
 
 
 const Home = () => {
@@ -35,6 +39,10 @@ const Home = () => {
             <VolunteerNeedsNow />
             <HowItWorks />
             <Testimonials />
+            {/* <AboutUs/> */}
+            {/* <ContactUs/> */}
+            <AboutUsPreview/>
+            <ContactUsPreview/>
         </Container>
     );
 };

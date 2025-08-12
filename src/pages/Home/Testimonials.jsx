@@ -34,11 +34,11 @@ const Testimonials = () => {
                                 <p className={ `text-lg md:text-xl italic ${ isDark ? 'text-white' : 'text-gray-800' }` }>"{ testimonial.quote }"</p>
                                 <div className="mt-6 flex items-center justify-center gap-4">
                                     <img src={ testimonial.avatar } alt={ testimonial.name } className="w-14 h-14 rounded-full" />
-                                    <div>
-                                        <h4 className="font-bold text-lg">
+                                    <div className='flex flex-col justify-center items-center'>
+                                        <h4 className="font-bold text-lg pb-1">
                                             { testimonial.name }
                                         </h4>
-                                        <p className="text-gray-500 dark:text-gray-400">
+                                        <p className={ `${ isDark ? 'text-white' : 'text-gray-800' } text-sm` }>
                                             { testimonial.role }
                                         </p>
                                     </div>
