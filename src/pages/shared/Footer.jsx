@@ -19,7 +19,7 @@ const Footer = () => {
     return (
         <footer className={ `transition-colors duration-300 ${ theme === 'dark' ? 'bg-gray-900 text-gray-400' : 'bg-white text-gray-600 border-t' }` }>
             <Container>
-                <div className="px-4 py-10">
+                <div className="py-10">
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                         {/* Logo and text*/ }
                         <div className="md:col-span-1">

@@ -15,14 +15,7 @@ const useAxiosSecure = () => {
 
     useEffect( () => {
         const requestInterceptor = axiosSecure.interceptors.request.use(
-            ( config ) => {
-                const token = Cookies.get( 'token' );
-                console.log( "Token in cookies:", token ); // <-- এখানে চেক
-
-                if ( token ) {
-                    config.headers.Authorization = `Bearer ${ token }`;
-                }
-                console.log( "Authorization header:", config.headers.Authorization ); // <-- হেডার চেক
+            ( config ) => {               
                 return config;
             },
 

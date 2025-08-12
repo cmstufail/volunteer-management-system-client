@@ -25,21 +25,18 @@ const PostDetails = () => {
 
     const [ post, setPost ] = useState( null );
     const [ loading, setLoading ] = useState( true );
-    const [ error, setError ] = useState( null );
 
     useTitle( post ? post.postTitle : 'Post Details' );
 
     useEffect( () => {
         setLoading( true );
-        setError( null );
         axiosSecure.get( `/post/${ id }` )
             .then( response => {
                 setPost( response.data );
             } )
-            .catch( err => {
-                console.error( "Error fetching post details:", err );
-                setError( 'Failed to fetch post details.' );
-                setPost( null );
+            .catch( error => {
+                console.error( "Error fetching post details:", error );
+                setPost( null )
             } )
             .finally( () => {
                 setLoading( false );
@@ -47,10 +44,12 @@ const PostDetails = () => {
     }, [ id, axiosSecure ] );
 
     if ( loading ) {
-        return <LoadingSpinner />;
+        return (
+            <div className="flex justify-center items-center min-h-screen">
+                <LoadingSpinner />
+            </div>
+        );
     }
-
-    if ( error ) return <div className="text-center py-20"><p className="text-red-600">{ error }</p></div>;
 
     if ( !post ) {
         return (
@@ -64,14 +63,17 @@ const PostDetails = () => {
 
     return (
         <Container>
-            <div className="max-w-6xl mx-auto pt-12 bg-base-100 rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row gap-12">
+            <div className="bg-base-100 rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row gap-12 pt-12 px-2 md:px-3 xl:px-2">
 
+                {/* Image Section */ }
                 <div className='flex-1'>
-                    <img src={ post.thumbnail }
+                    <img
+                        src={ post.thumbnail }
                         alt={ post.postTitle }
-                        className='w-full min-h-screen rounded-lg' />
+                        className='w-full h-auto md:h-full object-cover rounded-lg' />
                 </div>
 
+                {/* Content Section */ }
                 <div className="p-6 md:p-10 flex-1">
                     <span className="text-sm font-semibold text-primary bg-primary/10 py-1 px-4 rounded-full">
                         { post.category }
@@ -85,6 +87,7 @@ const PostDetails = () => {
                         <ExpandableText text={ post.description } maxLength={ 250 } />
                     </div>
 
+                    {/* Post Info Grid */ }
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 border-t dark:border-gray-700 pt-6">
                         <div className="flex items-center gap-3">
                             <FaMapMarkerAlt className="text-xl text-primary" />
@@ -101,6 +104,7 @@ const PostDetails = () => {
                                 <p className={ `${ isDark ? 'text-white' : 'text-gray-800' }` }>{ post.volunteersNeeded }</p>
                             </div>
                         </div>
+
                         <div className="flex items-center gap-3">
                             <FaRegCalendarAlt className="text-xl text-primary" />
                             <div>
@@ -110,12 +114,14 @@ const PostDetails = () => {
                         </div>
                     </div>
 
+                    {/* Organizer Info */ }
                     <div className="mt-6 border-t dark:border-gray-700 pt-6">
                         <h3 className="text-xl font-bold mb-3">Organizer Information</h3>
                         <p><strong>Name:</strong> { post.organizer.name }</p>
                         <p><strong>Email:</strong> { post.organizer.email }</p>
                     </div>
 
+                    {/* Action Button */ }
                     <div className="mt-10 text-center">
                         <Link
                             to={ `/be-a-volunteer/${ post._id }` }

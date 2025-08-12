@@ -6,7 +6,7 @@ const Card = ( { posts } ) => {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             { posts.map( post => (
-                <div key={ post._id } className="card bg-base-100 shadow-xl border dark:border-gray-700">
+                <div key={ post._id } className="card bg-base-100 shadow-xl dark:border-gray-700">
                     <figure className="h-56"><img src={ post.thumbnail } alt={ post.postTitle } className="w-full h-full object-cover object-top" /></figure>
                     <div className="card-body">
                         <h2 className="card-title">{ post.postTitle }</h2>

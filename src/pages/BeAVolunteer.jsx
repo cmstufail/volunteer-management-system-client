@@ -5,6 +5,8 @@ import { useAuth } from '../context/AuthProvider';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../pages/shared/hooks/useAxiosSecure';
 import useTitle from '../pages/shared/hooks/UseTitle';
+import LoadingSpinner from './shared/LoadingSpinner';
+import Container from './shared/Container';
 
 const BeAVolunteer = () => {
 
@@ -65,7 +67,13 @@ const BeAVolunteer = () => {
         }
     };
 
-    if ( loading ) return <div className="text-center py-20"><span className="loading loading-spinner loading-lg"></span></div>;
+    if ( loading ) {
+        return (
+            <div className="flex justify-center items-center min-h-screen">
+                <LoadingSpinner />
+            </div>
+        );
+    }
 
     if ( !post ) {
         return (
@@ -77,8 +85,9 @@ const BeAVolunteer = () => {
     }
 
     return (
-        <div className="bg-base-200 py-10 px-4 pt-24">
-            <div className="max-w-4xl mx-auto p-8 bg-base-100 shadow-xl rounded-lg">
+        <Container>
+            <div className="bg-base-200 py-10 px-4 pt-24">
+            <div className="p-8 bg-base-100 shadow-xl rounded-lg">
                 <h2 className="text-3xl font-bold mb-8 text-center">Apply to be a Volunteer for:</h2>
                 <h3 className="text-xl font-semibold mb-6 text-center text-primary">{ post.postTitle }</h3>
                 <form onSubmit={ handleSubmitRequest } className="space-y-4">
@@ -107,10 +116,10 @@ const BeAVolunteer = () => {
                         />
                     </div>
 
-                    <div className="form-control mt-6">
+                    <div className="form-control mt-6 flex justify-center">
                         <button
                             type="submit"
-                            className="btn btn-primary btn-lg w-full"
+                            className="btn btn-primary btn-lg"
                             disabled={ post.volunteersNeeded <= 0 || user?.email === post.organizer?.email }
                         >
                             Request to Volunteer
@@ -119,6 +128,7 @@ const BeAVolunteer = () => {
                 </form>
             </div>
         </div>
+        </Container>
     );
 };
 

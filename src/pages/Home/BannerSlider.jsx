@@ -36,15 +36,18 @@ const BannerSlider = () => {
     };
 
     return (
-        <div className='w-full h-[60vh] md:h-[80vh] lg:h-[85vh] max-h-[700px] my-12'>
-            <div className=" mx-auto px-4">
-                <h2 className="text-3xl font-bold text-center mb-8">
-                    Featured <motion.span
+        <div className='full-width-banner h-[60vh] md:h-[80vh] lg:h-[85vh] max-h-[700px] my-12 rounded-lg'>
+            <div className="w-full">
+                <h2 className="text-3xl md:text-4xl my-4 mb-8 font-bold text-center">
+                    Featured{ " " }
+                    <motion.span
                         animate={ {
                             color: [ '#ff5733', '#ffaf33', '#335cff', '#ff5733' ],
                         } }
                         transition={ { duration: 4, repeat: Infinity, ease: "linear" } }
-                    >Volunteer</motion.span> Opportunities
+                    >Volunteer
+                    </motion.span>{ " " }
+                    Opportunities
                 </h2>
             </div>
 
@@ -60,7 +63,7 @@ const BannerSlider = () => {
                 >
                     { slidesData.map( ( slide ) => (
                         <SwiperSlide key={ slide.id }>
-                            <div className="slide-container">
+                            <div className="slide-container rounded-lg overflow-hidden">
                                 <img src={ slide.image } alt={ slide.heading } className="slide-image" />
                                 <div className="slide-overlay"></div>
 

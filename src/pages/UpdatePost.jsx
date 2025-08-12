@@ -70,7 +70,11 @@ const UpdatePost = () => {
   };
 
   if ( loading || authLoading ) {
-    return <LoadingSpinner />;
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <LoadingSpinner />
+      </div>
+    );
   }
 
   if ( !post ) {

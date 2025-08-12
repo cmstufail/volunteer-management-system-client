@@ -1,9 +1,11 @@
-const Container = ( { children } ) => {
+const Container = ( { children, className = "" } ) => {
     return (
-        <div className='xl:px-20 md:px-10 sm:px-2 px-4'>
+        <div
+            className={ `max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 ${ className }` }
+        >
             { children }
         </div>
-    )
-}
+    );
+};
 
-export default Container
+export default Container;

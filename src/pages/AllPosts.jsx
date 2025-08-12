@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { FaRegCalendarAlt, FaSearch, FaList, FaTh } from "react-icons/fa";
 
 import Container from './shared/Container';
 import useTitle from './shared/hooks/UseTitle';
 import Table from './shared/Table';
-import LoadingSpinner from "./shared/LoadingSpinner";
+import useAxiosSecure from './shared/hooks/useAxiosSecure';
+import LoadingSpinner from './shared/LoadingSpinner';
 
 
 const AllPosts = () => {
@@ -14,6 +15,7 @@ const AllPosts = () => {
     useTitle( 'All Posts' );
 
     const [ posts, setPosts ] = useState( [] );
+    const axiosSecure = useAxiosSecure();
     const [ loading, setLoading ] = useState( true );
     const [ searchTerm, setSearchTerm ] = useState( '' );
     const [ layout, setLayout ] = useState( 'card' );
@@ -28,8 +30,9 @@ const AllPosts = () => {
 
     useEffect( () => {
         setLoading( true );
-        axios.get( `${ import.meta.env.VITE_API_URL }/posts?search=${ searchTerm }` )
+        axiosSecure.get( `${ import.meta.env.VITE_API_URL }/posts?search=${ searchTerm }` )
             .then( res => {
+                console.log( res.data.map( post => post._id ) );
                 setPosts( res.data );
                 setLoading( false );
             } )
@@ -37,7 +40,7 @@ const AllPosts = () => {
                 console.error( "Error fetching posts:", err );
                 setLoading( false );
             } );
-    }, [ searchTerm ] );
+    }, [ axiosSecure, searchTerm ] );
 
     const handleSearch = ( e ) => {
         e.preventDefault();
@@ -46,13 +49,17 @@ const AllPosts = () => {
     };
 
     if ( loading ) {
-        return <LoadingSpinner />;
+        return (
+            <div className="flex justify-center items-center min-h-screen">
+                <LoadingSpinner />
+            </div>
+        );
     }
 
 
     return (
         <Container>
-            <div className="mx-auto py-10 min-h-[calc(100vh-200px)] xl:px-3">
+            <div className="mx-auto py-10 min-h-[calc(100vh-200px)] px-2 md:px-3 xl:px-2">
                 <h2 className="text-3xl font-bold text-center mb-4">All Volunteer Opportunities</h2>
 
                 <div className="flex flex-col md:flex-row justify-center items-center mb-8 gap-4">
@@ -81,7 +88,7 @@ const AllPosts = () => {
                         layout === 'card' ? (
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                                 { posts.map( post => (
-                                    <div key={ post._id } className="card bg-base-100 shadow-xl border dark:border-gray-700 flex flex-col">
+                                    <div key={ post._id } className="card bg-base-100 shadow-xl dark:border-gray-700 flex flex-col">
                                         <figure className="h-56">
                                             <img src={ post.thumbnail } alt={ post.postTitle } className="w-full h-full object-cover object-top" />
                                         </figure>

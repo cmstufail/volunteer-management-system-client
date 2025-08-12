@@ -83,7 +83,11 @@ const Register = () => {
     };
 
     if ( isLoading ) {
-        return <LoadingSpinner />;
+        return (
+            <div className="flex justify-center items-center min-h-screen">
+                <LoadingSpinner />
+            </div>
+        );
     }
 
     return (
