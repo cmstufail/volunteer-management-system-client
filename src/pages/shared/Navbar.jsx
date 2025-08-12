@@ -1,15 +1,16 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { useTheme } from "../../context/ThemeProvider";
-import { useAuth } from "../../context/AuthProvider";
-
 import { FaMoon, FaSun, FaBars, FaChevronDown } from "react-icons/fa";
 
+// components
+import { useAuth } from "../../context/AuthProvider";
+import { useTheme } from "../../context/ThemeProvider";
 import logoWhite from '../../assets/images/logo_white.png';
 import logoBlack from '../../assets/images/logo_black.png';
 import Container from "./Container";
 
 const Navbar = () => {
+    
     const { user, logout } = useAuth();
     const { theme, toggleTheme } = useTheme();
     const [ isMobileMenuOpen, setIsMobileMenuOpen ] = useState( false );
@@ -72,7 +73,7 @@ const Navbar = () => {
 
     return (
         <nav
-            className={ `transition-colors duration-300 fixed w-full z-50 shadow-sm py-1 top-0 left-0 right-0 ${ theme === "dark"
+            className={ `transition-colors duration-300 fixed w-full z-50 shadow-sm py-3 top-0 left-0 right-0 ${ theme === "dark"
                 ? "bg-gray-900 text-gray-300"
                 : "bg-base-100 text-gray-900"
                 }` }

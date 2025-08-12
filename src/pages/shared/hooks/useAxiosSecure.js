@@ -1,8 +1,11 @@
 import axios from 'axios';
 import { useEffect } from 'react';
-import { useAuth } from '../../../context/AuthProvider';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+
+// components
+import { useAuth } from '../../../context/AuthProvider';
+
 
 const axiosSecure = axios.create( {
     baseURL: import.meta.env.VITE_API_URL,
@@ -15,7 +18,7 @@ const useAxiosSecure = () => {
 
     useEffect( () => {
         const requestInterceptor = axiosSecure.interceptors.request.use(
-            ( config ) => {               
+            ( config ) => {
                 return config;
             },
 

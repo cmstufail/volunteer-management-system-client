@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaRegCalendarAlt } from "react-icons/fa";
 
+// components
 import { useTheme } from '../../context/ThemeProvider';
 import useAxiosSecure from '../shared/hooks/useAxiosSecure';
 import LoadingSpinner from '../shared/LoadingSpinner';
@@ -32,8 +33,11 @@ const cardVariants = {
 
 const VolunteerNeedsNow = () => {
 
+    const location = useLocation();
+
     const { theme } = useTheme();
     const isDark = theme === 'dark';
+
     const axiosSecure = useAxiosSecure();
 
     const [ posts, setPosts ] = useState( [] );
@@ -62,10 +66,10 @@ const VolunteerNeedsNow = () => {
     }
 
     return (
-        <div className="my-16 px-2 md:px-3 xl:px-2">
+        <div className="py-12 dark:bg-gray-800 md:px-3 xl:px-2">
 
             {/* Section Title */ }
-            <div className="text-center mb-12">
+            <div className="text-center py-12">
                 <h2 className="text-3xl md:text-4xl font-bold">Volunteer Needs Now</h2>
                 <p className={ `mt-2 ${ isDark ? 'text-gray-300' : 'text-gray-600' }` }>Join these upcoming opportunities and make a difference.</p>
             </div>
@@ -97,7 +101,13 @@ const VolunteerNeedsNow = () => {
                                 <p className={ `${ isDark ? 'text-white' : 'text-gray-800' } text-sm` }>Deadline: { new Date( post.deadline ).toLocaleDateString() }</p>
                             </div>
                             <div className="card-actions justify-end mt-auto pt-4">
-                                <Link to={ `/post/${ post._id }` } className="btn btn-primary">View Details</Link>
+                                <Link
+                                    to={ `/post/${ post._id }` }
+                                    state={ { from: location } }
+                                    className="btn btn-primary"
+                                >
+                                    View Details
+                                </Link>
                             </div>
                         </div>
                     </motion.div>

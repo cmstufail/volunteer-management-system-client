@@ -1,4 +1,3 @@
-
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
 import Lottie from 'lottie-react';
@@ -8,6 +7,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
+// components
 import { useTheme } from '../context/ThemeProvider';
 import { useAuth } from '../context/AuthProvider';
 import signIn from '../assets/lotties/signin.json';
@@ -29,6 +29,8 @@ const LogIn = () => {
   const [ isLoading, setIsLoading ] = useState( false );
   const navigate = useNavigate();
   const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   const handleChange = ( e ) => {
     const { name, value } = e.target;
@@ -61,7 +63,7 @@ const LogIn = () => {
         showConfirmButton: false,
         timer: 2000
       } ).then( () => {
-        navigate( '/' );
+        navigate( from, { replace: true } );
       } );
 
     } catch ( error ) {
@@ -96,7 +98,7 @@ const LogIn = () => {
         showConfirmButton: false,
         timer: 2000
       } ).then( () => {
-        navigate( '/' );
+        navigate( from, { replace: true } );
       } );
     } catch ( error ) {
       console.error( 'Social login failed:', error );

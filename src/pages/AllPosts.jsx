@@ -3,14 +3,19 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaRegCalendarAlt, FaSearch, FaList, FaTh } from "react-icons/fa";
 
+// components
 import Container from './shared/Container';
 import useTitle from './shared/hooks/UseTitle';
 import Table from './shared/Table';
 import useAxiosSecure from './shared/hooks/useAxiosSecure';
 import LoadingSpinner from './shared/LoadingSpinner';
+import { useTheme } from '../context/ThemeProvider';
 
 
 const AllPosts = () => {
+
+    const { theme } = useTheme();
+    const isDark = theme === 'dark';
 
     useTitle( 'All Posts' );
 
@@ -99,7 +104,7 @@ const AllPosts = () => {
                                             <h2 className="card-title mt-2 min-h-[3.5rem]">{ post.postTitle }</h2>
                                             <div className="flex items-center gap-2 text-gray-500 mt-2">
                                                 <FaRegCalendarAlt />
-                                                <p>Deadline: { new Date( post.deadline ).toLocaleDateString() }</p>
+                                                <p className={ `${ isDark ? 'text-white' : 'text-gray-800' } text-sm` }>Deadline: { new Date( post.deadline ).toLocaleDateString() }</p>
                                             </div>
                                             <div className="card-actions justify-end mt-auto pt-4">
                                                 <Link to={ `/post/${ post._id }` } className="btn btn-primary">View Details</Link>

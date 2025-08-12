@@ -1,5 +1,6 @@
-import React from 'react'
 import { Outlet } from 'react-router-dom'
+
+// components
 import Navbar from '../pages/shared/Navbar'
 import Footer from '../pages/shared/Footer'
 import ScrollToTop from '../pages/utility/ScrollToTop'

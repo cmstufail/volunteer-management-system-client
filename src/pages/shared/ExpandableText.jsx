@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+
+// components
 import { useTheme } from '../../context/ThemeProvider';
 
 const ExpandableText = ( { text, maxLength = 150 } ) => {

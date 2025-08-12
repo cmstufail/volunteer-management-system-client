@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useState } from 'react';
 
+// components
 import registerLottie from '../assets/lotties/register.json';
 import { useTheme } from '../context/ThemeProvider';
 import { useAuth } from '../context/AuthProvider';

@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+
+// components
 import Container from '../shared/Container';
 import useTitle from '../shared/hooks/UseTitle';
 import BannerSlider from './BannerSlider';
@@ -6,8 +8,6 @@ import HowItWorks from './HowItWorks';
 import Testimonials from './Testimonials';
 import VolunteerNeedsNow from './VolunteerNeedsNow';
 import LoadingSpinner from '../shared/LoadingSpinner';
-// import AboutUs from '../AboutUs';
-// import ContactUs from '../ContactUs';
 import AboutUsPreview from './AboutUsPreview';
 import ContactUsPreview from './ContactUsPreview';
 
@@ -39,10 +39,10 @@ const Home = () => {
             <VolunteerNeedsNow />
             <HowItWorks />
             <Testimonials />
-            {/* <AboutUs/> */}
-            {/* <ContactUs/> */}
-            <AboutUsPreview/>
-            <ContactUsPreview/>
+            {/* <AboutUs/> */ }
+            {/* <ContactUs/> */ }
+            <AboutUsPreview />
+            <ContactUsPreview />
         </Container>
     );
 };

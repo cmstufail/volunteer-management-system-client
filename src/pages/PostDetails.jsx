@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { FaMapMarkerAlt, FaUsers, FaRegCalendarAlt } from 'react-icons/fa';
 
+// components
 import useAxiosSecure from '../pages/shared/hooks/useAxiosSecure';
 import { useAuth } from '../context/AuthProvider';
 import useTitle from '../pages/shared/hooks/UseTitle';
@@ -63,7 +64,7 @@ const PostDetails = () => {
 
     return (
         <Container>
-            <div className="bg-base-100 rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row gap-12 pt-12 px-2 md:px-3 xl:px-2">
+            <div className="bg-base-100 rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row gap-12 my-16 my-24 px-2 md:px-3 xl:px-2">
 
                 {/* Image Section */ }
                 <div className='flex-1'>
@@ -125,7 +126,7 @@ const PostDetails = () => {
                     <div className="mt-10 text-center">
                         <Link
                             to={ `/be-a-volunteer/${ post._id }` }
-                            className={ `btn btn-primary btn-lg px-12 ${ ( post.volunteersNeeded <= 0 || user?.email === post.organizer?.email ) ? 'btn-disabled' : '' }` }
+                            className={ `btn btn-outline btn-lg px-12 ${ ( post.volunteersNeeded <= 0 || user?.email === post.organizer?.email ) ? 'btn-disabled' : '' } w-full` }
                         >
                             Be a Volunteer
                         </Link>

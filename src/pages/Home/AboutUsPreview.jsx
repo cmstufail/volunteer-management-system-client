@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { FaLightbulb } from "react-icons/fa";
 import { FaInfoCircle } from "react-icons/fa";
+
+// components
 import { useTheme } from '../../context/ThemeProvider';
 
 
@@ -9,7 +11,7 @@ const AboutUsPreview = () => {
     const isDark = theme === 'dark';
 
     return (
-        <section className="bg-base-200 dark:bg-gray-800 py-12 px-4 sm:px-6 lg:px-8 rounded-2xl shadow-md">
+        <section className="bg-base-200 dark:bg-gray-800 my-24 py-12 rounded-2xl shadow-md ">
             <div className="max-w-5xl mx-auto text-center">
                 {/* Title with Icon */ }
                 <div className="flex justify-center items-center gap-3 mb-6">

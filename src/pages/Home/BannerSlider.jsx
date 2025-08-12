@@ -6,6 +6,7 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { motion } from "framer-motion";
 import { Link } from 'react-router-dom';
 
+// components
 import slidesData from '../Home/data/sliderData.json';
 import './data/BannerSlider.css';
 
@@ -36,9 +37,9 @@ const BannerSlider = () => {
     };
 
     return (
-        <div className='full-width-banner h-[60vh] md:h-[80vh] lg:h-[85vh] max-h-[700px] my-12 rounded-lg'>
+        <div className='full-width-banner h-[60vh] md:h-[80vh] lg:h-[85vh] max-h-[700px] mt-24 rounded-lg'>
             <div className="w-full">
-                <h2 className="text-3xl md:text-4xl my-4 mb-8 font-bold text-center">
+                <h2 className="text-3xl md:text-4xl my-4 mb-12 font-bold text-center">
                     Featured{ " " }
                     <motion.span
                         animate={ {

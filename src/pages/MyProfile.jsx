@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
+// components
 import { useAuth } from '../context/AuthProvider';
 import useTitle from './shared/hooks/UseTitle';
 import LoadingSpinner from './shared/LoadingSpinner';

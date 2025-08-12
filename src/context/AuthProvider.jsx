@@ -14,6 +14,8 @@ import {
     GithubAuthProvider,
     signInWithPopup
 } from 'firebase/auth';
+
+// components
 import { auth } from '../firebase/firebase.init';
 
 

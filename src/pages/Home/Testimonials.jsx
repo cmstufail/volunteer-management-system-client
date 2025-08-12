@@ -3,6 +3,7 @@ import { Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
+// components
 import { useTheme } from '../../context/ThemeProvider';
 
 const testimonials = [
@@ -17,7 +18,7 @@ const Testimonials = () => {
     const isDark = theme === 'dark';
 
     return (
-        <div className="bg-base-200 dark:bg-gray-800 py-16">
+        <div className="bg-base-200 dark:bg-gray-800 my-24 py-12 rounded-2xl">
             <div className="container mx-auto px-4">
                 <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Words From Our Community</h2>
                 <Swiper
@@ -34,11 +35,11 @@ const Testimonials = () => {
                                 <p className={ `text-lg md:text-xl italic ${ isDark ? 'text-white' : 'text-gray-800' }` }>"{ testimonial.quote }"</p>
                                 <div className="mt-6 flex items-center justify-center gap-4">
                                     <img src={ testimonial.avatar } alt={ testimonial.name } className="w-14 h-14 rounded-full" />
-                                    <div className='flex flex-col justify-center items-center'>
+                                    <div>
                                         <h4 className="font-bold text-lg pb-1">
                                             { testimonial.name }
                                         </h4>
-                                        <p className={ `${ isDark ? 'text-white' : 'text-gray-800' } text-sm` }>
+                                        <p className={ `${ isDark ? 'text-white' : 'text-gray-800' } text-sm flex` }>
                                             { testimonial.role }
                                         </p>
                                     </div>

@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 
+// components
 import { useAuth } from '../context/AuthProvider';
 import useAxiosSecure from '..//pages/shared/hooks/useAxiosSecure';
 import useTitle from '../pages/shared/hooks/UseTitle';

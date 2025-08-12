@@ -1,5 +1,6 @@
 import { FaShieldAlt } from 'react-icons/fa';
 
+// components
 import useTitle from './shared/hooks/UseTitle';
 
 

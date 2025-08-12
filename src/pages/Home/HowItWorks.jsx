@@ -1,6 +1,7 @@
 import { FaSearch, FaUserPlus, FaHandsHelping } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
+// components
 import { useTheme } from '../../context/ThemeProvider';
 
 const steps = [
@@ -16,8 +17,8 @@ const HowItWorks = () => {
     const isDark = theme === 'dark';
 
     return (
-        <div className="bg-base-200 dark:bg-gray-800 my-16 px-2 md:px-3 xl:px-2">
-            <div className="mx-auto text-center">
+        <div className="bg-base-200 dark:bg-gray-800 py-12 mt-12 md:px-3 xl:px-2">
+            <div className="mx-auto text-center px-8">
                 <h2 className="text-3xl md:text-4xl font-bold mb-12">How It Works</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
                     { steps.map( ( step, index ) => (
